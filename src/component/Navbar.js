@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import styles from '../css/Navbar.css';
 import image from '../images/codalien_logo.svg';
 
 const Navbar = () => {

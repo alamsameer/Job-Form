@@ -1,68 +1,105 @@
-/* Home.module.css */
+h1,
+h2,
+p {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-top: 60px;
+  text-align:left;
+}
+.head{
+  font-weight: 600;
+  font-size: 24px;
+  
+}
+.head1{
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
-.default-container {
-    max-width: 1320px;
-    margin: auto;
+ 
+ul.listOrder {
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  text-align: left; 
+}
+ul.listOrder li {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  margin: 0;
+  position: relative; 
+  padding-left: 20px; 
+}
+
+ul.listOrder li::before {
+  content: '•'; 
+   color: #040505; 
+  position: absolute;
+  left: 0;
+}
+
+.subHeading {
+  font-size: 18px;
+  font-weight: 550;
+  margin: 0;
+}
+
+.applyNow {
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .defaultContainer {
+    max-width: 1024px;
+    margin: 0 auto;
   }
-  
-  ul.list_order {}
-  
-  ul.list_order li {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 2;
-  }
-  
-  .sub-heading {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 0;
-  }
-  
-  .apply-now {
-    text-align: right;
-  }
-  
-  /* Add custom styles for the home page */
-  #home {
-    background-color: #f8f8f8;
-    padding: 20px;
-    text-align: center;
-  }
-  
+}
+
+@media (max-width: 767px) {
   h1 {
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 28px;
   }
-  
-  p {
-    font-size: 16px;
-    color: #555;
-  }
-  
+
   h2 {
-    font-size: 24px;
-    color: #20c997;
-    margin-top: 20px;
+    font-size: 20px;
   }
-  
-  .list_order {
-    list-style-type: disc;
-    margin-left: 20px;
+
+  p {
+    font-size: 14px;
   }
-  
-  .apply-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #20c997;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
+
+  ul.listOrder li {
+    font-size: 14px;
   }
-  
-  .apply-button:hover {
-    background-color: #0a8066;
+
+  .applyButton {
+    font-size: 14px;
   }
-  
+}
+
+#home {
+  background-color: #f8f8f8;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.applyButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #20c997;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.applyButton:hover {
+  background-color: #0a8066;
+}

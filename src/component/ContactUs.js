@@ -39,10 +39,10 @@ const ContactUs = () => {
           partnerships. Codalien Technologies is dedicated to propelling businesses
           forward in a rapidly evolving digital world.
         </p>
-        <p className={styles.contactDescription}>
+        {/* <p className={styles.contactDescription}>
           <strong>Address: </strong> A-49, Block A, Mohan Cooperative Industrial
           Estate, Badarpur, New Delhi, Delhi 110044
-        </p>
+        </p> */}
         <p className={`${styles.contactUsText} ${styles.address}`}>
           <strong>Address: </strong> A-49, Block A, Mohan Cooperative Industrial Estate, Badarpur, New Delhi, Delhi 110044
         </p>
