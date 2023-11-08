@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { startTimer, stopTimer } from "../utility/timer";
 import styles from "../css/camera.module.css"
 
-const CameraModal = ({ show, onHide,  onUploadVideo }) => {
+const CameraModal = ({ show, onHide,  onUploadVideo,videoData ,formDataRef}) => {
     const [showCamera, setShowCamera] = useState(true);
     const [showInputField, setShowInputField] = useState(true);
     const [isRecording, setIsRecording] = useState(false);
@@ -14,8 +14,11 @@ const CameraModal = ({ show, onHide,  onUploadVideo }) => {
     
     // const [isUploaded, setIsUploaded] = useState(false);
     const [inputVideo, setInputVideo] = useState(); 
-    const [recordedVideo, setRecordedVideo] = useState(null); 
-    
+    const [recordedVideo, setRecordedVideo] = useState(videoData); 
+    useEffect(() => {
+        // Update recordedVideo when videoData changes
+        setRecordedVideo(videoData);
+    }, [videoData]);
     const mediaRecorderRef = useRef(null);
     const videoRef = useRef(null);
 
@@ -187,6 +190,8 @@ const CameraModal = ({ show, onHide,  onUploadVideo }) => {
         setShowRetakeButton(false);
         setShowPreviewVideo(false);
         // setIsUploaded(false);
+        formDataRef.current.video = null;
+        setRecordedVideo(null);
 
         const downloadLink = document.getElementById("video_download");
         if (downloadLink) {
@@ -196,6 +201,9 @@ const CameraModal = ({ show, onHide,  onUploadVideo }) => {
     return (
         show && (
             <div className="modal show" tabIndex="-1" role="dialog" style={{ display: "block" }}>
+                <div>
+                   { recordedVideo}
+                </div>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -206,12 +214,22 @@ const CameraModal = ({ show, onHide,  onUploadVideo }) => {
                         </div>
                         <div className="modal-body">
                             {/* for preview video */}
-                            <video className="preview_video" 
+                            {
+                                recordedVideo!=null && (
+                                    <video className="preview_video" 
+                                    id="previewVideo" 
+                                       controls
+                                       src={recordedVideo}
+                                       playsInline>
+                                   </video>
+                                )
+                            }
+                            {/* <video className="preview_video" 
                              id="previewVideo" 
                                 style={{ display: (showPreviewVideo && !isRecording) ? "block" : "none" }}
                                 controls
                                 playsInline>
-                            </video>
+                            </video> */}
                             {/* for video */}
                             <div id="video">
                                 <label htmlFor="video">Introductory Video (MP4, max 100MB, max 1 minute):</label>

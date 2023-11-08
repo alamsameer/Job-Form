@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useRef} from "react";
 import Navbar from "./Navbar";
 import Modal from "./CameraModal";
 import styles from '../css/Apply.module.css'
 
 const ApplyPage = () => {
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({
+    const formDataRef = useRef({
         name: "",
         email: "",
         college: "",
@@ -28,14 +28,14 @@ const ApplyPage = () => {
         event.preventDefault();
 
         const formDataToSend = new FormData();
-        formDataToSend.append("name", formData.name);
-        formDataToSend.append("email", formData.email);
-        formDataToSend.append("college", formData.college);
-        formDataToSend.append("year", formData.year);
-        formDataToSend.append("aboutOpportunity", formData.aboutOpportunity);
-        formDataToSend.append("phone", formData.phone);
-        formDataToSend.append("resume", formData.resume);
-        formDataToSend.append("video", formData.video);
+        formDataToSend.append("name", formDataRef.current.name);
+        formDataToSend.append("email", formDataRef.current.email);
+        formDataToSend.append("college", formDataRef.current.college);
+        formDataToSend.append("year", formDataRef.current.year);
+        formDataToSend.append("aboutOpportunity", formDataRef.current.aboutOpportunity);
+        formDataToSend.append("phone", formDataRef.current.phone);
+        formDataToSend.append("resume", formDataRef.current.resume);
+        formDataToSend.append("video", formDataRef.current.video);
 
         try {
             // const response = await Axios.post("/your-server-endpoint", formDataToSend);
@@ -47,8 +47,13 @@ const ApplyPage = () => {
 
     const handleUploadVideo = (videoData) => {
         console.log("Downloaded video data:", videoData);
+        // Store the recorded video data in the state
+        formDataRef.current = {
+            ...formDataRef.current,
+            video: videoData,
+        };
+        console.log("Form data:", formDataRef.current);
     };
-
     const handleVideoUploaded = () => {
         document.getElementById("video-upload-button").innerText = "Video Uploaded Successfully";
     };
@@ -169,6 +174,8 @@ const ApplyPage = () => {
                 onHide={closeModal}
                 // onVideoUploaded={handleVideoUploaded}
                 onUploadVideo={handleUploadVideo}
+                videoData={formDataRef.current.video} // Pass the video data to the modal
+                formDataRef={formDataRef}
             />
         </div>
     );
